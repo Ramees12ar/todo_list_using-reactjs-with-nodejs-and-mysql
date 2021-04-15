@@ -31,9 +31,19 @@ app.post("/api/add", (req,res) => {
         console.log("1 record inserted");
     })
 });
-
+app.put("/api/put/:dataId", (req,res) => {
+    console.log("update");
+    const dataId= req.params.dataId;
+    const dataName= req.body.dataName;
+    console.log(dataId,dataName);
+    var updateSql = "UPDATE data SET name = ? WHERE id = ?";
+    db.query(updateSql,[dataName,dataId], (err,result)=>{
+        if (err) throw err;
+        console.log("1 record updated");       
+    })
+});
 app.delete("/api/delete/:dataId", (req,res) => {
-    console.log("shh");
+    console.log("delete");
     const itemName= req.params.dataId;
     console.log(itemName);
     var deleteSql = "DELETE FROM data WHERE id = ?";

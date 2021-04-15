@@ -15,6 +15,13 @@ function TodoList() {
         Axios.delete(`http://localhost:3004/api/delete/${dataId}`);
         window.location.reload();
     };
+    var updateData = (dataId,dataName) =>{
+        console.log("delete");
+        var newData = prompt("Please enter the input:", dataName);
+        Axios.put(`http://localhost:3004/api/put/${dataId}`,
+            {dataName: newData});
+        window.location.reload();
+    };
 
     return(
         <div style={{width:"40%",margin:"auto"}}>
@@ -27,6 +34,10 @@ function TodoList() {
                         <button className="btn btn-danger" style={{float:"right"}}
                         onClick={() => {deleteData(todo.id)}}>Delete
                         </button>
+                        <button className="btn btn-success" style={{float:"right",marginRight:"8px"}}
+                        onClick={() => {updateData(todo.id,todo.name)}}>Update
+                        </button>
+                        
                     </li>
                 )
                 }
