@@ -6,7 +6,7 @@ function Todo() {
     var submitData = () =>{
         console.log("hi");
         console.log(data);
-        Axios.post('http://localhost:3004/api/add',
+        Axios.post('http://localhost:3004/api',
         {itemName: data}).then(() => {
             alert('added');
         });
