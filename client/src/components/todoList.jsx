@@ -6,19 +6,19 @@ import Axios from 'axios';
 function TodoList() {
     const [listView,setView]=useState([])
     useEffect(() => {
-        Axios.get('http://localhost:3004/api/get').then((res) => {
+        Axios.get('http://localhost:3004/api').then((res) => {
             setView(res.data);
         })
     }, []);
     var deleteData = (dataId) =>{
         console.log("delete");
-        Axios.delete(`http://localhost:3004/api/delete/${dataId}`);
+        Axios.delete(`http://localhost:3004/api/${dataId}`);
         window.location.reload();
     };
     var updateData = (dataId,dataName) =>{
         console.log("delete");
         var newData = prompt("Please enter the input:", dataName);
-        Axios.put(`http://localhost:3004/api/put/${dataId}`,
+        Axios.put(`http://localhost:3004/api/${dataId}`,
             {dataName: newData});
         window.location.reload();
     };
