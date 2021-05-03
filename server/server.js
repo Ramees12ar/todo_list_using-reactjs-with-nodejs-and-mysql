@@ -15,14 +15,14 @@ app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-app.get('/api/get', (req,res) => {
+app.get('/api', (req,res) => {
     var sql = "SELECT * FROM data";
     db.query(sql, (err, result) =>{
         console.log(result);
         res.send(result);
     })
 })
-app.post("/api/add", (req,res) => {
+app.post("/api", (req,res) => {
     const itemName= req.body.itemName;
     console.log(itemName);
     var sql = "INSERT INTO data (name) VALUES (?)";
@@ -31,7 +31,7 @@ app.post("/api/add", (req,res) => {
         console.log("1 record inserted");
     })
 });
-app.put("/api/put/:dataId", (req,res) => {
+app.put("/api/:dataId", (req,res) => {
     console.log("update");
     const dataId= req.params.dataId;
     const dataName= req.body.dataName;
@@ -42,7 +42,7 @@ app.put("/api/put/:dataId", (req,res) => {
         console.log("1 record updated");       
     })
 });
-app.delete("/api/delete/:dataId", (req,res) => {
+app.delete("/api/:dataId", (req,res) => {
     console.log("delete");
     const itemName= req.params.dataId;
     console.log(itemName);
